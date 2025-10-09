@@ -1,44 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Movie Review App</h1>
-    </header>
-    <main>
-        <section id="movie-gallery">
-            <h2>Select a Movie</h2>
-            <div id="movie-list"></div>
-        </section>
-        <section id="review-section" class="hidden">
-            <h2>Write a Review</h2> 
-            <div id="selected-movie"></div>
-            <form id="review-form">
-                <input type="text" id="reviewer-name" placeholder="Your Name" required>
-                <textarea id="review-text" placeholder="Write your review here" required></textarea>
-                <div class="rating">
-                    <span>Rating: </span>
-                    <div id="star-rating">
-                        <span class="star" data-rating="1">★</span>
-                        <span class="star" data-rating="2">★</span>
-                        <span class="star" data-rating="3">★</span>
-                        <span class="star" data-rating="4">★</span>
-                        <span class="star" data-rating="5">★</span>
-                    </div>
-                </div>
-                <button type="submit">Submit Review</button>
-            </form>
-        </section>
-        <section id="reviews">
-            <h2>Reviews</h2>
-            <div id="review-list"></div>
-        </section>
-    </main>
-    <script src="script.js"></script>
-</body>
-</html>
+const movies = [
+    { id: 1, title: "Comali", image: "./images/comali.jpg" },
+    { id: 2, title: "Coolie", image: "./images/coolie.jpg" },
+    { id: 3, title: "Dude", image: "./images/dude.jpg" },
+    { id: 4, title: "Movie", image: "./images/images.jpg" },
+    { id: 5, title: "Ponniyin Selvan", image: "./images/ponniyin selvan.jpeg" }
+];
+
+const movieList = document.getElementById('movie-list');
+const reviewSection = document.getElementById('review-section');
+const selectedMovie = document.getElementById('selected-movie');
+const reviewForm = document.getElementById('review-form');
+const starRating = document.getElementById('star-rating');
+const reviewList = document.getElementById('review-list');
+
+let currentMovie = null;
+let currentRating = 0;
+
+movies.forEach(movie => {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('movie-card');
+    movieCard.innerHTML = `<img src="${movie.image}" alt="${movie.title}">`
+    movieCard.addEventListener('click', () => selectMovie(movie));
+    movieList.appendChild(movieCard);
+})
+
+function selectMovie(movie) {
+    currentMovie = movie;
+    selectedMovie.innerHTML = `<h3>${movie.title}</h3><img src="${movie.image}" alt="${movie.title}">`;
+    reviewSection.classList.remove('hidden');
+    reviewSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+starRating.addEventListener('click', (event) => {
+  if(event.target.classList.contains('star')) {
+    const rating = parseInt(event.target.dataset.rating, 10);
+    currentRating = rating;
+    updateStartRating();
+  }
+});
+
+function updateStartRating() {
+   const stars = starRating.getElementsByClassName('star');
+   for(let i = 0; i < stars.length; i++) {
+    stars[i].classList.toggle('active', i < currentRating);
+   }
+}
+
+
+reviewForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const reviewerName = document.getElementById('reviewer-name').value;
+  const reviewText = document.getElementById('review-text').value;
+
+  if(currentMovie && reviewerName && reviewText && currentRating > 0) { 
+    addReview(currentMovie, reviewerName, reviewText, currentRating);
+    reviewForm.reset();
+    currentRating = 0;
+    updateStartRating();
+  }
+});
+
+function addReview(movie, reviewerName, reviewText, rating) {
+    const reviewCard = document.createElement('div');
+    reviewCard.classList.add('review-card');
+    reviewCard.innerHTML = `
+        <h3>${movie.title}</h3>
+        <p><strong>Reviewer:</strong> ${reviewerName}</p>
+        <div class="rating">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</div>
+        <p>${reviewText}</p>
+    `;
+    reviewList.prepend(reviewCard);
+}
