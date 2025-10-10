@@ -1,9 +1,9 @@
 const movies = [
-    { id: 1, title: "Comali", image: "./images/comali.jpg" },
-    { id: 2, title: "Coolie", image: "./images/coolie.jpg" },
-    { id: 3, title: "Dude", image: "./images/dude.jpg" },
-    { id: 4, title: "Movie", image: "./images/images.jpg" },
-    { id: 5, title: "Ponniyin Selvan", image: "./images/ponniyin selvan.jpeg" }
+    { id: 1, title: "Comali", image: "/images/comali.jpg" },
+    { id: 2, title: "Coolie", image: "/images/coolie.jpg" },
+    { id: 3, title: "Dude", image: "/images/dude.jpg" },
+    { id: 4, title: "Sakthi Thirumagan", image: "/images/images.jpg" },
+    { id: 5, title: "Ponniyin Selvan", image:"/images/ponniyin selvan.jpeg" }
 ];
 
 const movieList = document.getElementById('movie-list');
