@@ -15,8 +15,13 @@ Objectives:
 •	To ensure mobile-first responsive design with a clean user interface.
 \
 2. Screenshots / API Documentation
-<img width="1366" height="768" alt="Screenshot (130)" src="https://github.com/user-attachments/assets/6d898187-7b22-4fcb-a150-84772c851eb1" />
-<img width="1366" height="768" alt="Screenshot (131)" src="https://github.com/user-attachments/assets/23710cf6-bbbf-4711-be12-55b8d5f0cac3" />
+
+<img width="1366" height="768" alt="Screenshot (133)" src="https://github.com/user-attachments/assets/cc6d90e3-435b-4812-82a6-6752f70e6d7b" />
+<img width="1366" height="768" alt="Screenshot (134)" src="https://github.com/user-attachments/assets/1d7ddde4-2fd0-45c2-9ffd-8d919567fc23" />
+<img width="1366" height="768" alt="Screenshot (135)" src="https://github.com/user-attachments/assets/a71bb6eb-72b3-4c00-8450-f1f95992253e" />
+<img width="1366" height="768" alt="Screenshot (136)" src="https://github.com/user-attachments/assets/7003ff93-a723-4878-a097-8a88eb767ed5" />
+
+
 
  3. Challenges & Solutions
 Challenge	Solution Implemented
